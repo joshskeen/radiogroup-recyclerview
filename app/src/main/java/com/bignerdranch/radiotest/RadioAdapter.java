@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-abstract class RadioAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
+public abstract class RadioAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
     public int mSelectedItem = -1;
     public List<T> mItems;
     private Context mContext;
