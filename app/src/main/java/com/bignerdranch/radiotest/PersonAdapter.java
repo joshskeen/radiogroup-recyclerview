@@ -10,7 +10,7 @@ public class PersonAdapter extends RadioAdapter<Person> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(RadioAdapter.ViewHolder viewHolder, int i) {
         super.onBindViewHolder(viewHolder, i);
         viewHolder.mText.setText(mItems.get(i).mName);
     }
