@@ -30,7 +30,8 @@ public abstract class RadioAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        final View view = LayoutInflater.from(mContext).inflate(R.layout.view_item, viewGroup, false);
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        final View view = inflater.inflate(R.layout.view_item, viewGroup, false);
         return new ViewHolder(this, view);
     }
 

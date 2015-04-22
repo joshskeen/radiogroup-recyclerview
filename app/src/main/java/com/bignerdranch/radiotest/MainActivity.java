@@ -27,12 +27,4 @@ public class MainActivity extends ActionBarActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    class Person {
-        public String mName;
-
-        public Person(String name) {
-            mName = name;
-        }
-    }
-
 }

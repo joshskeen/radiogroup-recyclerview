@@ -7,20 +7,18 @@ import android.widget.TextView;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
 
-    private RadioAdapter mRadioAdapter;
     public RadioButton mRadio;
     public TextView mText;
 
-    public ViewHolder(RadioAdapter radioAdapter, final View inflate) {
+    public ViewHolder(final RadioAdapter radioAdapter, final View inflate) {
         super(inflate);
-        mRadioAdapter = radioAdapter;
         mText = (TextView) inflate.findViewById(R.id.text);
         mRadio = (RadioButton) inflate.findViewById(R.id.radio);
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mRadioAdapter.mSelectedItem = ViewHolder.this.getAdapterPosition();
-                mRadioAdapter.notifyItemRangeChanged(0, mRadioAdapter.mItems.size());
+                radioAdapter.mSelectedItem = getAdapterPosition();
+                radioAdapter.notifyItemRangeChanged(0, radioAdapter.mItems.size());
             }
         };
         itemView.setOnClickListener(clickListener);
