@@ -1,6 +1,6 @@
 package com.bignerdranch.radiotest;
 
-class Person {
+public class Person {
     public String mName;
 
     public Person(String name) {
