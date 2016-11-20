@@ -1,61 +1,50 @@
 package com.bignerdranch.radiotest;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
-import android.widget.TextView;
 
 import java.util.List;
 
-public abstract class RadioAdapter<T> extends RecyclerView.Adapter<RadioAdapter.ViewHolder> {
-    public int mSelectedItem = -1;
-    public List<T> mItems;
-    private Context mContext;
+class RadioAdapter extends RecyclerView.Adapter<PersonViewHolder>
+{
+    private List<Person> mItems;
+    private int mSelectedItem = -1;
 
-    public RadioAdapter(Context context, List<T> items) {
-        mContext = context;
+    RadioAdapter(List<Person> items)
+    {
         mItems = items;
     }
 
     @Override
-    public void onBindViewHolder(RadioAdapter.ViewHolder viewHolder, final int i) {
-        viewHolder.mRadio.setChecked(i == mSelectedItem);
+    public PersonViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    {
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_item, parent, false);
+        return new PersonViewHolder(view, this);
     }
 
     @Override
-    public int getItemCount() {
+    public void onBindViewHolder(PersonViewHolder holder, int position)
+    {
+        holder.bind(mItems.get(position), position);
+    }
+
+    @Override
+    public int getItemCount()
+    {
         return mItems.size();
     }
 
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        final View view = inflater.inflate(R.layout.view_item, viewGroup, false);
-        return new ViewHolder(view);
+    int getSelectedItem()
+    {
+        return mSelectedItem;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        public RadioButton mRadio;
-        public TextView mText;
-
-        public ViewHolder(final View inflate) {
-            super(inflate);
-            mText = (TextView) inflate.findViewById(R.id.text);
-            mRadio = (RadioButton) inflate.findViewById(R.id.radio);
-            View.OnClickListener clickListener = new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mSelectedItem = getAdapterPosition();
-                    notifyItemRangeChanged(0, mItems.size());
-                }
-            };
-            itemView.setOnClickListener(clickListener);
-            mRadio.setOnClickListener(clickListener);
-        }
+    void setSelectedItem(int mSelectedItem)
+    {
+        this.mSelectedItem = mSelectedItem;
+        notifyItemRangeChanged(0, mItems.size());
     }
 
 }
